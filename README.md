@@ -2,6 +2,11 @@
 ### ePaper library for ESP32 using the Arduino Framework
 
 ---
+#### Note
+* Ported from loboris/ESP32_ePaper_example please give him credits for the EPD lib!
+* Removed all file system related methods and adjusted JPG for mem buff only
+* This was ported for the ESP32 Arduino Framework and uses Arduino SPI methods
+* The code is still not well formated in some files due the quick port, sorry!
 
 #### Features
 
@@ -109,7 +114,6 @@ The display can be powered from 3.3V or from **GPIO pin**. See *EPDspi.h* for co
 
 **If you want to use different pins, change them in** *EPDspi.h*
 
-
 ---
 
 #### How to build
@@ -120,6 +124,15 @@ Clone the repository
 
 Using PlatformIO for Visual Studio Code.
 
+Open folder after clone in VS Code.
+
+If PlatformIO does not initialise, reinit platfrm io manually.
+
+Adjust platfromio.ini for your upload COM Port.
+
+If you use a different screen size adjust *EPDspi.h* Width + Height.
+
+If the rendering is messed up you may need to replace LUTDefault_full and LUTDefault_part in *EPDspi.cpp*.
 
 ---
 
