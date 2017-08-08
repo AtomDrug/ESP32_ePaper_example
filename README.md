@@ -1,17 +1,14 @@
 
-### ePaper library for ESP32
+### ePaper library for ESP32 using the Arduino Framework
 
 ---
 
-
 #### Features
 
-* Support for **GDEH029A1** / **SSD1608** based ePaper modules in 4-wire SPI mode. Support for other controllers will be added later
+* Support for **GDEH029A1** / **SSD1608** based ePaper modules in 4-wire SPI mode. 
 * **emulated** 4-bit gray scale mode
 * **SPI displays oriented SPI driver library** based on *spi-master* driver
-* Combined **DMA SPI** transfer mode and **direct SPI** for maximal speed
 * **4-bit Grayscale mode** or **1-bit b/w mode** can be selected during runtime
-* SPI speeds up to **20 MHz** are tested and works without problems
 * **Demo application** included which demonstrates most of the library features
 
 
@@ -61,7 +58,7 @@
       * Image size: Up to 65520 x 65520 pixels
       * Color space: YCbCr three components only. Gray scale image is not supported.
       * Sampling factor: 4:4:4, 4:2:2 or 4:2:0.
-    * Can display the image **from file** or **memory buffer**
+    * Can display an image from a **memory buffer**
     * Image can be **scaled** by factor 0 ~ 3  (1/1, 1/2, 1/4 or 1/8)
     * Image is displayed from X,Y position on screen/window:
       * X: image left position; constants CENTER & RIGHT can be used; *negative* value is accepted
@@ -69,10 +66,10 @@
     * Image is converted to **4-bit Gray Scale mode**
 * **Other display functions**:
   * **EPD_fillScreen**  Fill the whole screen with black, white or gray scale
-* **compile_font_file**  Function which compiles font c source file to font file which can be used in *EPD_setFont()* function to select external font. Created file have the same name as source file and extension *.fnt*
 
 
-* **Global wariables**
+
+* **Global variables**
   * **orientation**  current screen orientation
   * **font_ratate**  current font rotate angle (0~395)
   * **font_transparent**  if not 0 draw fonts transparent
@@ -100,78 +97,38 @@ Full **demo application**, well documented, is included, please **analyze it** t
 #### Connecting the display
 
 To run the demo, attach display module to ESP32. Default pins used are:
-* mosi: 23
-*  sck: 18
-*   CS:  5 (display CS)
-*   DC: 26 (display DC)
-*  RST: 27 (display RESET)
-* BUSY: 32 (display BUSY output)
+* mosi/DIN: 23
+* clk: 18
+* CS:  5 (display CS)
+* DC: 17 (display DC)
+* RST: 27 (display RESET)
+* BUSY: 26 (display BUSY output)
+
 
 The display can be powered from 3.3V or from **GPIO pin**. See *EPDspi.h* for configuration options.
 
 **If you want to use different pins, change them in** *EPDspi.h*
 
-Using *make menuconfig* **select tick rate 1000** ( → Component config → FreeRTOS → Tick rate (Hz) ) to get more accurate timings
 
 ---
 
 #### How to build
 
-Configure your esp32 build environment as for **esp-idf examples**
-
 Clone the repository
 
-`git clone https://github.com/loboris/ESP32_ePaper_example.git`
+`git clone https://github.com/AtomDrug/ESP32_ePaper_example.git`
 
-Execute menuconfig and configure your Serial flash config and other settings. Included *sdkconfig.defaults* sets some defaults to be used.
+Using PlatformIO for Visual Studio Code.
 
-Navigate to **ePaper Display DEMO Configuration** and set **SPIFFS** options.
-
-Select if you want to use **wifi** (recommended) to get the time from **NTP** server and set your WiFi SSID and password.
-
-`make menuconfig`
-
-Make and flash the example.
-
-`make all && make flash`
 
 ---
 
-#### Prepare **SPIFFS** image
-
-*The demo uses some image and font files and it is necessary to flash the spiffs image*
-
-**To flash already prepared image** *components/spiffs_image/spiffs_image.img* execute:
-
-`make copyfs`
+Tested on Waveshare 1.54" ePaper module connected to HIMALAYA ESP32 Dev board.
+![Tested on](images/1.54inch_EPD.jpg)
 
 ---
 
-You can also prepare different SFPIFFS **image** and flash it to ESP32.
-
-Files to be included on spiffs are already in **components/spiffs_image/image/** directory. You can add or remove the files you want to include.
-
-Then execute:
-
-`make makefs`
-
-to create **spiffs image** in *build* directory **without flashing** to ESP32
-
-Or execute:
-
-`make flashfs`
-
-to create **spiffs image** in *build* directory and **flash** it to ESP32
-
----
-
-Tested on Waveshare 2.9" ePaper module connected to SparkFun ESP32 Thing board.
-![Tested on](https://raw.githubusercontent.com/loboris/ESP32_ePaper_example/master/Documents/2.9inch-e-paper-module-4.jpg)
-
----
-
-![Fonts](https://raw.githubusercontent.com/loboris/ESP32_ePaper_example/master/Documents/EPD-fonts.jpg)
-![Rotated](https://raw.githubusercontent.com/loboris/ESP32_ePaper_example/master/Documents/EPD-Rotated.jpg)
-![7-segFont](https://raw.githubusercontent.com/loboris/ESP32_ePaper_example/master/Documents/EPD-7sef_font.jpg)
-![Grayscale](https://raw.githubusercontent.com/loboris/ESP32_ePaper_example/master/Documents/EPD_Grayscale.jpg)
-![No power](https://raw.githubusercontent.com/loboris/ESP32_ePaper_example/master/Documents/EPD-No_power.jpg)
+![Loop rendering](images/ePaper_example.jpg)
+![Time](images/time_example.jpg)
+![Weather](images/weather_img_example.jpg)
+![H_ESP32](images/himalaya_esp32_dev_board.jpg)
