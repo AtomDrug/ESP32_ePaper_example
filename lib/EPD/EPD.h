@@ -1,6 +1,7 @@
 /*
  * High level EPD functions
- * Author:  LoBo 06/2017, https://github/loboris
+ * Author:  LoBo 06/2017, https://github.com/loboris
+ *          AtomDrug 08/2017, https://github.com/AtomDrug
  * 
  */
 
