@@ -1,6 +1,8 @@
 
 ### ePaper library for ESP32 using the Arduino Framework
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1bf08e795b24b398e0d2892bdba8d95)](https://app.codacy.com/app/AtomDrug/ESP32_ePaper_example?utm_source=github.com&utm_medium=referral&utm_content=kc1r74p/ESP32_ePaper_example&utm_campaign=Badge_Grade_Dashboard)
+
 ---
 #### Note
 * Ported from loboris/ESP32_ePaper_example please give him credits for the EPD lib!
